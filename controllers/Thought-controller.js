@@ -1,9 +1,11 @@
-const { Thought, User } = require('../models');
+//const { Thoughts } = require('../models'); 
+const Thought = require('../models/Thought');
+const User = require('../models/User');
 
 const thoughtController = {
     getAllThoughts(req, res){
         Thought.find({})
-        .then(dbThoughtData0 => res.json(dbThoughtData))
+        .then(dbThoughtData => res.json(dbThoughtData))
         .catch((err) => {
             console.log(err);
             res.status(500).json(err); 
@@ -11,7 +13,7 @@ const thoughtController = {
     },
 
     // get a single thought 
-    getThoughtbyId({ params }, res) {
+    getThoughtById({ params }, res) {
         Thought.findOne({
             _id: params.thoughtId,
         })
@@ -112,3 +114,5 @@ const thoughtController = {
 
     
 }
+
+module.exports = thoughtController; 
